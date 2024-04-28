@@ -1,0 +1,79 @@
+body {
+    /* background-color: whitesmoke; */
+    background: url(background2.png) no-repeat;
+    background-size: cover;
+    
+
+}
+
+#form {
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(0, 0, 0, 0.273);
+    border-radius: 30px;
+    box-shadow: 0 0 10px black;
+    padding: 20px;
+    font-family: 'Times New Roman', Times, sans-serif;
+    font-size: 16px;
+    color: white;
+    width: 300px;
+}
+
+#form label,
+#form input {
+    margin-bottom: 15px;
+
+}
+
+.register {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+#form input {
+    height: 25px;
+    border-radius: 1px solid white;
+    font-size: 13px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"] {
+    border: 1px solid rgba(0, 0, 0, 0.344);
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #45a049;
+    color: white;
+
+}
+
+.submit{
+    background-color: #3bbb3f;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.submit:hover {
+    background-color: green;
+    
+}
+
+.submit:active{
+    font-size: 12px;
+}
+
+.h2heading {
+    
+    margin-top: 1px;
+    border-bottom: 4px solid green;
+
+}

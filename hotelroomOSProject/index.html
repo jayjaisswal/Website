@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        pre{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body{
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <pre><b># Define variables<b>
+        MAX_ROOMS=10
+        BOOKINGS_FILE=&quot;bookings.txt&quot;
+        ALL_BOOKINGS_HISTORY=&quot;booking_history.txt&quot;
+        
+       <b> # Function to display menu<b>
+        display_menu() {
+          clear
+          echo &quot;Hotel Room Booking System&quot;
+          echo &quot;-------------------------&quot;
+          echo &quot;1. Book a room&quot;
+          echo &quot;2. Cancel booking&quot;
+          echo &quot;3. Display current bookings&quot;
+          echo &quot;4. Display available rooms&quot;
+          echo &quot;5. View booking history&quot;
+          echo &quot;6. Exit&quot;
+          echo &quot;-------------------------&quot;
+          echo &quot;Booking system operates on a FIFO (First In, First Out) basis.&quot;
+        }
+        
+        <b># Function to book a room<b>
+        book_room() {
+          clear
+          echo &quot;Book a Room&quot;
+          echo &quot;-----------&quot;
+          read -p &quot;Enter customer name: &quot; customer_name
+          read -p &quot;Enter contact number: &quot; contact_number
+          read -p &quot;Enter Aadhar number: &quot; aadhar_number
+          read -p &quot;Enter home address: &quot; home_address
+          read -p &quot;Enter purpose of booking: &quot; purpose
+        </pre>
+        <pre><b># Get current date and time<b>
+            booking_date=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
+          
+            <b># Check if the maximum room capacity has been reached<b>
+            if [[ $(wc -l &lt; &quot;$BOOKINGS_FILE&quot;) -lt $MAX_ROOMS ]]; then
+            <b> # Append the booking information to the bookings file<b>
+              echo &quot;$booking_date | $customer_name | $contact_number | $aadhar_number | $home_address | $purpose&quot; &gt;&gt; &quot;$BOOKINGS_FILE&quot;
+              echo &quot;Room booked successfully for $customer_name.&quot;
+          
+              <b># Append booking history to history file<b>
+              echo &quot;$booking_date | Booked room for $customer_name (Phone: $contact_number, Aadhar: $aadhar_number, Address: $home_address, Purpose: $purpose)&quot; &gt;&gt; &quot;$ALL_BOOKINGS_HISTORY&quot;
+            else
+              echo &quot;Sorry, no rooms available at the moment.&quot;
+            fi
+          
+            read -n 1 -s -r -p &quot;Press any key to continue...&quot;
+          }
+          
+          </pre>
+          <pre><b># Function to cancel booking<b>
+            cancel_booking() {
+              clear
+              echo &quot;Cancel Booking&quot;
+              echo &quot;--------------&quot;
+              read -p &quot;Enter customer name to cancel booking: &quot; cancel_name
+              read -p &quot;Enter contact number to cancel booking: &quot; cancel_number
+            
+              <b># Check if the bookings file is not empty<b>
+              if [[ -s &quot;$BOOKINGS_FILE&quot; ]]; then
+              <b># Check if the customer name and contact number exist in the bookings file<b>
+                if grep -q &quot;$cancel_name.*$cancel_number&quot; &quot;$BOOKINGS_FILE&quot;; then
+                <b> # Remove the booking with the specified customer name and contact number<b>
+                  sed -i &quot;/$cancel_name.*$cancel_number/d&quot; &quot;$BOOKINGS_FILE&quot;
+                  echo &quot;Booking for $cancel_name with contact number $cancel_number canceled successfully.&quot;
+            
+                  <b># Append cancellation history to history file<b>
+                  echo &quot;$(date +&quot;%Y-%m-%d %H:%M:%S&quot;) | Canceled booking for $cancel_name (Phone: $cancel_number)&quot; &gt;&gt; &quot;$ALL_BOOKINGS_HISTORY&quot;
+                else
+                  echo &quot;No booking found for $cancel_name with contact number $cancel_number.&quot;
+                fi
+              else
+                echo &quot;No bookings found.&quot;
+              fi
+            
+              read -n 1 -s -r -p &quot;Press any key to continue...&quot;
+            }
+            </pre>
+            <pre><b># Function to display current bookings<b>
+                display_bookings() {
+                  clear
+                  echo &quot;Current Bookings&quot;
+                  echo &quot;----------------&quot;
+                
+                  <b># Check if the bookings file is not empty<b>
+                  if [[ -s &quot;$BOOKINGS_FILE&quot; ]]; then
+                    # Display each booking with labeled fields<b>
+                
+                
+                    awk &apos;BEGIN { printf &quot;%-5s %-20s %-15s %-15s %-20s %-15s %-20s\n&quot;, &quot;No.&quot;, &quot;Time&quot;, &quot;Customer Name&quot;, &quot;Phone Number&quot;, &quot;Aadhar Number&quot;,&quot;Address&quot;, &quot;Booking Date&quot; }
+                         { printf &quot;%-5s %-20s %-15s %-15s %-20s %-15s %-20s\n&quot;, NR, $2, $4, $6, $8, $10, $1 }&apos; &quot;$BOOKINGS_FILE&quot;
+                  else
+                    echo &quot;No bookings found.&quot;
+                  fi
+                
+                  read -n 1 -s -r -p &quot;Press any key to continue...&quot;
+                }
+                </pre>
+                <pre><b># Function to display available rooms<b>
+                    display_available_rooms() {
+                      clear
+                      echo &quot;Available Rooms&quot;
+                      echo &quot;---------------&quot;
+                    
+                     <b> # Check if bookings.txt exists, create it if it doesn&apos;t<b>
+                      touch &quot;$BOOKINGS_FILE&quot;
+                    
+                      <b># Calculate available rooms<b>
+                      if [[ -s &quot;$BOOKINGS_FILE&quot; ]]; then
+                        booked_rooms=$(wc -l &lt; &quot;$BOOKINGS_FILE&quot;)
+                      else
+                        booked_rooms=0
+                      fi
+                    
+                      available_rooms=$((MAX_ROOMS - booked_rooms))
+                      echo &quot;Available rooms: $available_rooms&quot;
+                    
+                      read -n 1 -s -r -p &quot;Press any key to continue...&quot;
+                    }
+                    </pre>
+                    <pre><b># Function to display booking history<b>
+                        display_booking_history() {
+                          clear
+                          echo &quot;Booking History&quot;
+                          echo &quot;---------------&quot;
+                        
+                          if [[ -s &quot;$ALL_BOOKINGS_HISTORY&quot; ]]; then
+                           <b> # Display booking history including customer name, phone number, Aadhar number, home address, and purpose of booking<b>
+                            cat &quot;$ALL_BOOKINGS_HISTORY&quot; | nl
+                          else
+                            echo &quot;No booking history found.&quot;
+                          fi
+                        
+                          read -n 1 -s -r -p &quot;Press any key to continue...&quot;
+                        }
+                        </pre>
+                        <pre><b># Main function<b>
+                            main() {
+                              while true; do
+                                display_menu
+                                read -p &quot;Enter your choice: &quot; choice
+                                case $choice in
+                                  1) book_room ;;
+                                  2) cancel_booking ;;
+                                  3) display_bookings ;;
+                                  4) display_available_rooms ;;
+                                  5) display_booking_history ;;
+                                  6) clear; echo &quot;Exiting...&quot;; exit ;;
+                                  *) echo &quot;Invalid choice. Please try again.&quot; ;;
+                                esac
+                              done
+                            }
+                            
+                            <b># Start the program<b>
+                            main
+                            
+                            </pre>
+
+</body>
+</html>

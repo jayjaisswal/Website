@@ -1,0 +1,155 @@
+/* HEADER CSS PROPERTIES */
+
+.logo {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.top {
+    /* text-align: center; */
+
+    font-size: 40px;
+    padding-top: 10px;
+    /* color: white; */
+    /* background-color: rgb(0, 60, 128); */
+    /* color: black; */
+    color: #4fb35d;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.top span {
+    /* margin-left: 20px; */
+    font-weight: 600;
+}
+
+/* BODY CSS PROPERTIES */
+
+body {
+    margin: 0;
+}
+
+body {
+    /* background-color: whitesmoke; */
+    /* background: url(background.jpg) no-repeat;
+    background-size: cover; */
+    background-color: whitesmoke;
+
+}
+
+
+/* Navigation Bar CSS properties */
+
+.navigation a:hover {
+    /* color: yellow; */
+    color: #4fb35d;
+    /* font-size: 18px; */
+    /* background-color: orangered;
+      border: none; */
+
+}
+
+.navigation a {
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 20px;
+    /* color: white; */
+    color:black;
+    font-family: poppins,sans-serif;
+
+}
+
+.navigation {
+    /* background-color: black; */
+    background-color: white;
+}
+
+.profile {
+    position: absolute;
+    right: 10px;
+}
+
+
+/* LOGIN-SIGN UP BUTTON CSS PROPERTIES */
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    /* background-color: #f4511e; */
+    background-color: #4fb35d;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 133px;
+    transition: all 0.5s;
+    cursor: pointer;
+
+}
+
+#login {
+    position: absolute;
+    right: 120px;
+    top: 20px;
+}
+
+#signup {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 18px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button:active {
+    transform: translateY(2px);
+}
+
+/* CARD CSS PROPERTIES */
+.card-text {
+    text-align: justify;
+
+}
+
+/* .card {
+    width: 18rem;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-flex;
+    
+}  */
+
+
+
+/* .row{
+    width: 18rem;
+    /* margin-left: 10px; */
+    /* margin-top: 10px; */
+    /* i{
+        color: white;
+    }
+  */

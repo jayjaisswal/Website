@@ -1,0 +1,95 @@
+/* General Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+}
+
+/* portfolio.css */
+
+#about {
+    text-align: justify;
+    /* text-align: center ; */
+
+}
+
+#name {
+    margin-top: 0px;
+    /* font-size: 20px; */
+}
+
+.about p {
+    margin: 1rem;
+    text-align: justify;
+    font-size: 1.rem;
+
+}
+
+.header {
+    background-color: rgba(245, 245, 245, 0.798);
+    color: black;
+
+
+
+}
+
+.photo-container {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.section-container {
+    padding-left: 30px;
+    padding-top: 40px;
+    background-color: whitesmoke;
+}
+
+/* .footer-section {
+    display: flex;
+    padding-left: 30px;
+    align-items: end;
+} */
+/* portfolio.css */
+
+.footer-section {
+background-color: #333;
+color: white;
+padding: 20px;
+text-align: center;
+}
+
+.footer-section a {
+color: white;
+text-decoration: none;
+}
+
+.footer-section a:hover {
+text-decoration: underline;
+}
