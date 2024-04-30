@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator For 3rd Semester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #cgpa {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center;">CGPA Calculator For 3rd Semester</h2>
+        <label for="sgpa1">SGPA 1:</label>
+        <input type="number" id="sgpa1" min="0" step="0.01"><br>
+
+        <label for="credit1">Credit 1:</label>
+        <input type="number" id="credit1" min="0"><br>
+
+        <label for="sgpa2">SGPA 2:</label>
+        <input type="number" id="sgpa2" min="0" step="0.01"><br>
+
+        <label for="credit2">Credit 2:</label>
+        <input type="number" id="credit2" min="0"><br>
+
+        <label for="sgpa3">SGPA 3:</label>
+        <input type="number" id="sgpa3" min="0" step="0.01"><br>
+
+        <label for="credit3">Credit 3:</label>
+        <input type="number" id="credit3" min="0"><br>
+
+        <button onclick="calculateCGPA()">Calculate CGPA</button>
+
+        <p id="cgpa"></p>
+    </div>
+
+    <script>
+        function calculateCGPA() {
+            let sgpa1 = parseFloat(document.getElementById("sgpa1").value);
+            let sgpa2 = parseFloat(document.getElementById("sgpa2").value);
+            let sgpa3 = parseFloat(document.getElementById("sgpa3").value);
+
+            let credit1 = parseInt(document.getElementById("credit1").value);
+            let credit2 = parseInt(document.getElementById("credit2").value);
+            let credit3 = parseInt(document.getElementById("credit3").value);
+
+            let cgpa = ((sgpa1 * credit1) + (sgpa2 * credit2) + (sgpa3 * credit3)) / (credit1 + credit2 + credit3);
+            let p = document.getElementById("cgpa");
+            p.innerText = "CGPA: " + cgpa.toFixed(2);
+        }
+    </script>
+</body>
+</html>
